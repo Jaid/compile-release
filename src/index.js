@@ -52,7 +52,6 @@ const job = async argv => {
     }),
     fsp.mkdirp(releaseFolder),
   ])
-  log("%j", miniArchiveList)
   await fsp.emptyDir(releaseFolder)
   const releaseTasks = []
   for (const file of copyList) {
