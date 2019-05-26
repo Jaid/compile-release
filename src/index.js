@@ -132,9 +132,9 @@ const job = async argv => {
         |> #.map(([key, value]) => `${key}: ${value}`)
         |> #.join("\n")
         fsp.outputFile(path.join(debFolder, "DEBIAN", "control"), debInfo, "utf8")
+        await execa(dpkgDebFile, ["--build", debFolder, releaseFolder])
       }
       compileExecutableTasks.push(buildDebTask)
-      await execa(dpkgDebFile, ["--build", debFolder, releaseFolder])
     } else {
       logger.warn("Skipping deb building, dpkg-deb not found")
     }
