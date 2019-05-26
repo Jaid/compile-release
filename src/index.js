@@ -122,6 +122,7 @@ const job = async argv => {
         const debInfo = {
           Package: pkg.name,
           Version: pkg.version,
+          "Standards-Version": pkg.version,
           Maintainer: pkg.author |> stringifyAuthor,
           Description: pkg.description,
           "Installed-Size": Math.ceil(size / 1024),
@@ -132,7 +133,7 @@ const job = async argv => {
         |> Object.entries
         |> #.map(([key, value]) => `${key}: ${value}`)
         |> #.join("\n")
-        await fsp.outputFile(path.join(debFolder, "DEBIAN", "control"), `${debInfo}\n`, "utf8")
+        await fsp.outputFile(path.join(debFolder, "debian", "control"), `${debInfo}\n`, "utf8")
         await execa(dpkgDebFile, ["--build", debFolder, releaseFolder])
       }
       compileExecutableTasks.push(buildDebTask)
