@@ -11,6 +11,7 @@ import promiseSequence from "promise-sequence"
 import whichPromise from "which-promise"
 import execa from "execa"
 import jaidLogger from "jaid-logger"
+import stringifyAuthor from "stringify-author"
 
 const logger = jaidLogger(_PKG_TITLE)
 
@@ -115,15 +116,15 @@ const job = async argv => {
         const debFolder = path.join(packageFolder, "dist", "deb")
         const debBinFolder = path.join(debFolder, "usr", "local", "bin")
         await fsp.ensureDir(debBinFolder)
-        const debBinFile = path.join(debBinFolder, pkg.bin || pkg.name)
-        await fsp.copyFile(path.join(releaseFolder, scriptBinaryFile), path.join(releaseFolder, debBinFile))
+        const debBinFile = path.join(debBinFolder, pkg.name)
+        await fsp.copyFile(path.join(releaseFolder, scriptBinaryFile), debBinFile)
         const {size} = await fsp.stat(debBinFile)
         const debInfo = {
           Package: pkg.name,
           Version: pkg.version,
-          Maintainer: pkg.author,
+          Maintainer: pkg.author |> stringifyAuthor,
           Description: pkg.description,
-          "Installed-Size": size,
+          "Installed-Size": Math.ceil(size / 1024),
           Section: "base",
           Priority: "optional",
           Architecture: "amd64",
@@ -131,7 +132,7 @@ const job = async argv => {
         |> Object.entries
         |> #.map(([key, value]) => `${key}: ${value}`)
         |> #.join("\n")
-        fsp.outputFile(path.join(debFolder, "DEBIAN", "control"), debInfo, "utf8")
+        await fsp.outputFile(path.join(debFolder, "DEBIAN", "control"), `${debInfo}\n`, "utf8")
         await execa(dpkgDebFile, ["--build", debFolder, releaseFolder])
       }
       compileExecutableTasks.push(buildDebTask)
