@@ -11,10 +11,12 @@
     "execa": "^1.0.0",
     "figures": "^3.0.0",
     "globby": "^9.2.0",
+    "jaid-logger": "^1.0.0",
     "lodash": "^4.17.11",
     "ora": "^3.4.0",
     "pkg": "^4.4.0",
     "promise-sequence": "^0.3.1",
+    "which-promise": "^1.0.0",
     "winston": "^3.2.1",
     "yargs": "^13.2.4"
   },
