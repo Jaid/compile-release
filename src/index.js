@@ -115,38 +115,35 @@ const job = async argv => {
   if (mode === "cli" || mode === "app") {
     const dpkgDebFile = await findDpkgDebFile()
     if (dpkgDebFile) {
-      const buildDebTask = async () => {
-        logger.info("Found dpkg-deb binary at %s", dpkgDebFile)
-        const scriptBinaryFile = `${packageId}_linux_x64`
-        const debFolder = path.join(packageFolder, "dist", "deb")
-        const debBinFolder = path.join(debFolder, "usr", "local", "bin")
-        await fsp.ensureDir(debBinFolder)
-        const releaseBinFile = path.join(releaseFolder, scriptBinaryFile)
-        const debBinFile = path.join(debBinFolder, pkg.name)
-        await fsp.copyFile(releaseBinFile, debBinFile)
-        logger.info("Copied linux binary %s to %s", releaseBinFile, debBinFile)
-        const {size} = await fsp.stat(debBinFile)
-        const debInfo = {
-          Package: pkg.name,
-          Version: pkg.version,
-          "Standards-Version": pkg.version,
-          Maintainer: pkg.author |> stringifyAuthor,
-          Description: pkg.description,
-          "Installed-Size": Math.ceil(size / 1024),
-          Section: "base",
-          Priority: "optional",
-          Architecture: "amd64",
-        }
-        const controlContent = debInfo
+      logger.info("Found dpkg-deb binary at %s", dpkgDebFile)
+      const scriptBinaryFile = `${packageId}_linux_x64`
+      const debFolder = path.join(packageFolder, "dist", "deb")
+      const debBinFolder = path.join(debFolder, "usr", "local", "bin")
+      await fsp.ensureDir(debBinFolder)
+      const releaseBinFile = path.join(releaseFolder, scriptBinaryFile)
+      const debBinFile = path.join(debBinFolder, pkg.name)
+      await fsp.copyFile(releaseBinFile, debBinFile)
+      logger.info("Copied linux binary %s to %s", releaseBinFile, debBinFile)
+      const {size} = await fsp.stat(debBinFile)
+      const debInfo = {
+        Package: pkg.name,
+        Version: pkg.version,
+        "Standards-Version": pkg.version,
+        Maintainer: pkg.author |> stringifyAuthor,
+        Description: pkg.description,
+        "Installed-Size": Math.ceil(size / 1024),
+        Section: "base",
+        Priority: "optional",
+        Architecture: "amd64",
+      }
+      const controlContent = debInfo
         |> Object.entries
         |> #.map(([key, value]) => `${key}: ${value}`)
         |> #.join("\n")
-        controlFile = path.join(debFolder, "DEBIAN", "control")
-        logger.info("Wrote %s properties to info file %s", Object.keys(debInfo).length, controlFile)
-        await fsp.outputFile(controlFile, `${controlContent}\n`, "utf8")
-        await execa(dpkgDebFile, ["--build", debFolder, releaseFolder])
-      }
-      compileExecutableTasks.push(buildDebTask)
+      controlFile = path.join(debFolder, "DEBIAN", "control")
+      logger.info("Wrote %s properties to info file %s", Object.keys(debInfo).length, controlFile)
+      await fsp.outputFile(controlFile, `${controlContent}\n`, "utf8")
+      await execa(dpkgDebFile, ["--build", debFolder, releaseFolder])
     } else {
       logger.warn("Skipping deb building, dpkg-deb not found")
     }
