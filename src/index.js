@@ -112,12 +112,15 @@ const job = async argv => {
     const dpkgDebFile = await findDpkgDebFile()
     if (dpkgDebFile) {
       const buildDebTask = async () => {
+        logger.info("Found dpkg-deb binary at %s", debBinFile)
         const scriptBinaryFile = `${packageId}_linux_x64`
         const debFolder = path.join(packageFolder, "dist", "deb")
         const debBinFolder = path.join(debFolder, "usr", "local", "bin")
         await fsp.ensureDir(debBinFolder)
+        const releaseBinFile = path.join(releaseFolder, scriptBinaryFile)
         const debBinFile = path.join(debBinFolder, pkg.name)
-        await fsp.copyFile(path.join(releaseFolder, scriptBinaryFile), debBinFile)
+        await fsp.copyFile(releaseBinFile, debBinFile)
+        logger.info("Copied linux binary %s to %s", releaseBinFile, debBinFile)
         const {size} = await fsp.stat(debBinFile)
         const debInfo = {
           Package: pkg.name,
@@ -135,7 +138,7 @@ const job = async argv => {
         |> #.map(([key, value]) => `${key}: ${value}`)
         |> #.join("\n")
         controlFile = path.join(debFolder, "DEBIAN", "control")
-        logger.info(`Wrote ${Object.keys(debInfo).length} properties to info file ${controlFile}`)
+        logger.info("Wrote %s properties to info file %s", Object.keys(debInfo).length, controlFile)
         await fsp.outputFile(controlFile, `${controlContent}\n`, "utf8")
         await execa(dpkgDebFile, ["--build", debFolder, releaseFolder])
       }
