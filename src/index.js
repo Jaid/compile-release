@@ -140,7 +140,7 @@ const job = async argv => {
         |> Object.entries
         |> #.map(([key, value]) => `${key}: ${value}`)
         |> #.join("\n")
-      controlFile = path.join(debFolder, "DEBIAN", "control")
+      const controlFile = path.join(debFolder, "DEBIAN", "control")
       logger.info("Wrote %s properties to info file %s", Object.keys(debInfo).length, controlFile)
       await fsp.outputFile(controlFile, `${controlContent}\n`, "utf8")
       await execa(dpkgDebFile, ["--build", debFolder, releaseFolder])
