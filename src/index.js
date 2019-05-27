@@ -130,10 +130,13 @@ const job = async argv => {
           Priority: "optional",
           Architecture: "amd64",
         }
+        const controlContent = debInfo
         |> Object.entries
         |> #.map(([key, value]) => `${key}: ${value}`)
         |> #.join("\n")
-        await fsp.outputFile(path.join(debFolder, "DEBIAN", "control"), `${debInfo}\n`, "utf8")
+        controlFile = path.join(debFolder, "DEBIAN", "control")
+        logger.info(`Wrote ${Object.keys(debInfo).length} properties to info file ${controlFile}`)
+        await fsp.outputFile(controlFile, `${controlContent}\n`, "utf8")
         await execa(dpkgDebFile, ["--build", debFolder, releaseFolder])
       }
       compileExecutableTasks.push(buildDebTask)
