@@ -112,7 +112,7 @@ const job = async argv => {
     const dpkgDebFile = await findDpkgDebFile()
     if (dpkgDebFile) {
       const buildDebTask = async () => {
-        logger.info("Found dpkg-deb binary at %s", debBinFile)
+        logger.info("Found dpkg-deb binary at %s", dpkgDebFile)
         const scriptBinaryFile = `${packageId}_linux_x64`
         const debFolder = path.join(packageFolder, "dist", "deb")
         const debBinFolder = path.join(debFolder, "usr", "local", "bin")
