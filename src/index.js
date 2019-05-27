@@ -109,6 +109,10 @@ const job = async argv => {
       },
     ]
     const compileExecutableTasks = targets.map(({id, file}) => () => exec([...pkgOptions, "--target", id, "--output", path.join(releaseFolder, file)]))
+    releaseTasks.push(compileExecutableTasks |> promiseSequence)
+  }
+  await Promise.all(releaseTasks)
+  if (mode === "cli" || mode === "app") {
     const dpkgDebFile = await findDpkgDebFile()
     if (dpkgDebFile) {
       const buildDebTask = async () => {
@@ -146,9 +150,7 @@ const job = async argv => {
     } else {
       logger.warn("Skipping deb building, dpkg-deb not found")
     }
-    releaseTasks.push(compileExecutableTasks |> promiseSequence)
   }
-  await Promise.all(releaseTasks)
 }
 
 yargs.command("$0", "Creates some release files", noop, job).argv
