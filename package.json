@@ -13,6 +13,7 @@
     "globby": "^9.2.0",
     "jaid-logger": "^1.1.2",
     "lodash": "^4.17.11",
+    "moment": "^2.24.0",
     "ora": "^3.4.0",
     "pkg": "^4.4.0",
     "promise-sequence": "^0.3.1",
