@@ -35,7 +35,7 @@
     "rimraf": "^2.6.3",
     "webpack": "^4.32.2",
     "webpack-cli": "^3.3.2",
-    "webpack-config-jaid": "^5.5.1"
+    "webpack-config-jaid": "^5.5.2"
   },
   "scripts": {
     "clean": "rimraf dist/ test/**/dist/",
