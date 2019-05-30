@@ -179,7 +179,7 @@ const job = async argv => {
       const controlFile = path.join(debFolder, "DEBIAN", "control")
       logger.info("Wrote %s properties to info file %s", Object.keys(debInfo).length, controlFile)
       await fsp.outputFile(controlFile, `${controlContent}\n`, "utf8")
-      await execa(dpkgDebFile, ["--build", debFolder, releaseFolder])
+      await execa(dpkgDebFile, ["--build", debFolder, path.join(releaseFolder, `${packageId}_amd64.deb`)])
     } else {
       logger.warn("Skipping deb building, dpkg-deb not found")
     }
