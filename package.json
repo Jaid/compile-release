@@ -50,5 +50,6 @@
     "prepareActionJest": "npm run build:prod"
   },
   "name": "compile-release",
-  "description": "CLI wrapper for zeit/pkg."
+  "description": "CLI wrapper for zeit/pkg.",
+  "funding": "https://github.com/sponsors/jaid"
 }
