@@ -1,9 +1,9 @@
 # compile-release
 
 
-<a href="https://raw.githubusercontent.com/Jaid/compile-release/master/license.txt"><img src="https://img.shields.io/github/license/Jaid/compile-release?style=flat-square" alt="License"/></a>  
-<a href="https://actions-badge.atrox.dev/Jaid/compile-release/goto"><img src="https://img.shields.io/endpoint.svg?style=flat-square&url=https%3A%2F%2Factions-badge.atrox.dev%2FJaid%2Fcompile-release%2Fbadge" alt="Build status"/></a> <a href="https://github.com/Jaid/compile-release/commits"><img src="https://img.shields.io/github/commits-since/Jaid/compile-release/v1.3.1?style=flat-square&logo=github" alt="Commits since v1.3.1"/></a> <a href="https://github.com/Jaid/compile-release/commits"><img src="https://img.shields.io/github/last-commit/Jaid/compile-release?style=flat-square&logo=github" alt="Last commit"/></a> <a href="https://github.com/Jaid/compile-release/issues"><img src="https://img.shields.io/github/issues/Jaid/compile-release?style=flat-square&logo=github" alt="Issues"/></a>  
-<a href="https://npmjs.com/package/compile-release"><img src="https://img.shields.io/npm/v/compile-release?style=flat-square&logo=npm&label=latest%20version" alt="Latest version on npm"/></a> <a href="https://github.com/Jaid/compile-release/network/dependents"><img src="https://img.shields.io/librariesio/dependents/npm/compile-release?style=flat-square&logo=npm" alt="Dependents"/></a> <a href="https://npmjs.com/package/compile-release"><img src="https://img.shields.io/npm/dm/compile-release?style=flat-square&logo=npm" alt="Downloads"/></a>
+<a href="https://raw.githubusercontent.com/jaid/compile-release/master/license.txt"><img src="https://img.shields.io/github/license/jaid/compile-release?style=flat-square" alt="License"/></a> <a href="https://github.com/sponsors/jaid"><img src="https://img.shields.io/badge/<3-Sponsor-FF45F1?style=flat-square" alt="Sponsor compile-release"/></a>
+<a href="https://actions-badge.atrox.dev/jaid/compile-release/goto"><img src="https://img.shields.io/endpoint.svg?style=flat-square&url=https%3A%2F%2Factions-badge.atrox.dev%2Fjaid%2Fcompile-release%2Fbadge" alt="Build status"/></a> <a href="https://github.com/jaid/compile-release/commits"><img src="https://img.shields.io/github/commits-since/jaid/compile-release/v1.3.1?style=flat-square&logo=github" alt="Commits since v1.3.1"/></a> <a href="https://github.com/jaid/compile-release/commits"><img src="https://img.shields.io/github/last-commit/jaid/compile-release?style=flat-square&logo=github" alt="Last commit"/></a> <a href="https://github.com/jaid/compile-release/issues"><img src="https://img.shields.io/github/issues/jaid/compile-release?style=flat-square&logo=github" alt="Issues"/></a>  
+<a href="https://npmjs.com/package/compile-release"><img src="https://img.shields.io/npm/v/compile-release?style=flat-square&logo=npm&label=latest%20version" alt="Latest version on npm"/></a> <a href="https://github.com/jaid/compile-release/network/dependents"><img src="https://img.shields.io/librariesio/dependents/npm/compile-release?style=flat-square&logo=npm" alt="Dependents"/></a> <a href="https://npmjs.com/package/compile-release"><img src="https://img.shields.io/npm/dm/compile-release?style=flat-square&logo=npm" alt="Downloads"/></a>
 
 **CLI wrapper for zeit/pkg.**
 
@@ -33,7 +33,6 @@ yarn global add compile-release@^1.3.1
 
 
 
-
 ## CLI Usage
 After installing package `compile-release` globally, you can use its command line interface.
 ```bash
@@ -53,7 +52,7 @@ compile-release --help
 
 Setting up:
 ```bash
-git clone git@github.com:Jaid/compile-release.git
+git clone git@github.com:jaid/compile-release.git
 cd compile-release
 npm install
 ```
