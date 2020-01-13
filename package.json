@@ -51,5 +51,9 @@
   },
   "name": "compile-release",
   "description": "CLI wrapper for zeit/pkg.",
-  "funding": "https://github.com/sponsors/jaid"
+  "funding": "https://github.com/sponsors/jaid",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaid/compile-release"
+  }
 }
