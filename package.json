@@ -55,5 +55,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/jaid/compile-release"
-  }
+  },
+  "homepage": "https://github.com/Jaid/compile-release",
+  "keywords": []
 }
