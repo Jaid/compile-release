@@ -4,7 +4,6 @@
   "author": "Jaid <jaid.jsx@gmail.com> (https://github.com/Jaid)",
   "dependencies": {
     "@absolunet/fsp": "^1.6.2",
-    "@babel/runtime": "^7.9.2",
     "archiver": "^4.0.1",
     "chalk": "^4.0.0",
     "debug": "^4.1.1",
@@ -25,7 +24,7 @@
   "devDependencies": {
     "acorn": "^7.1.1",
     "babel-jest": "^25.3.0",
-    "babel-preset-jaid": "^7.3.6",
+    "babel-preset-jaid": "^8.0.0",
     "browserslist-config-jaid-node": "^2.2.2",
     "caniuse-lite": "^1.0.30001042",
     "coffee": "^5.2.2",
