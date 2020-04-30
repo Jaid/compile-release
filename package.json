@@ -56,5 +56,19 @@
     "url": "https://github.com/jaid/compile-release"
   },
   "homepage": "https://github.com/Jaid/compile-release",
-  "keywords": []
+  "keywords": [
+    "cli",
+    "compile",
+    "compiler",
+    "github-release",
+    "node-packager",
+    "packager",
+    "packaging",
+    "pkg",
+    "release",
+    "tool",
+    "util",
+    "utility",
+    "zeit-pkg"
+  ]
 }
