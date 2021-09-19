@@ -70,5 +70,6 @@
     "util",
     "utility",
     "zeit-pkg"
-  ]
+  ],
+  "type": "module"
 }
